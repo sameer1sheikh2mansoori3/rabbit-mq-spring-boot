@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class RabbitMqProducer {
 
-
+@Value("${rabbitmq.queue.json.name}")
+private String jsonQueue;
 //    exchange name
 @Value("${rabbitmq.exchange.name}")
 private String exchane;
@@ -30,4 +31,7 @@ private String exchane;
         LOGGER.info(String.format("Message sent -> %s", message));
         this.rabbitTemplate.convertAndSend(exchane, routing_key, message);
     }
+
+
+
 }
